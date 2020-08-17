@@ -5,6 +5,10 @@
 	Name="HPIView"
 	ProjectGUID="{2CDDB3F0-B357-4265-9E8A-88B4EE4DBE00}"
 	RootNamespace="HPIView"
+	SccProjectName="SAK"
+	SccAuxPath="SAK"
+	SccLocalPath="SAK"
+	SccProvider="SAK"
 	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
