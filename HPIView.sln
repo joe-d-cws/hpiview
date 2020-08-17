@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HPIView", "HPIView.vcproj", "{2CDDB3F0-B357-4265-9E8A-88B4EE4DBE00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8D721D52-E239-48CD-97AE-8E81E4EF9126}"
+	ProjectSection(SolutionItems) = preProject
+		fmt_gaf.txt = fmt_gaf.txt
+		gaf-fmt.txt = gaf-fmt.txt
+		gafnotes.txt = gafnotes.txt
+		HPIView.txt = HPIView.txt
+		libjpeg.lib = libjpeg.lib
+		readme.txt = readme.txt
+		sct-fmt.txt = sct-fmt.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2CDDB3F0-B357-4265-9E8A-88B4EE4DBE00}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2CDDB3F0-B357-4265-9E8A-88B4EE4DBE00}.Debug|Win32.Build.0 = Debug|Win32
+		{2CDDB3F0-B357-4265-9E8A-88B4EE4DBE00}.Release|Win32.ActiveCfg = Release|Win32
+		{2CDDB3F0-B357-4265-9E8A-88B4EE4DBE00}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
