@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		libjpeg.lib = libjpeg.lib
 		readme.txt = readme.txt
 		sct-fmt.txt = sct-fmt.txt
+		zlib.lib = zlib.lib
 	EndProjectSection
 EndProject
 Global
