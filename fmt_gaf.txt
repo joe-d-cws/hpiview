@@ -1,0 +1,129 @@
+
+  ÛÛÛÛÛÛÜ ÛÛÛÛÛÛ ÜÛÛÛÛÛÛ
+  ÛÛÛ ÛÛÛ ÛÛÛ  Û ÛÛÛ ÛÛÛ        Researched by Saruman / DFR Engineering
+  ÛÛÛ ÛÛÛ ÛÛÛÛ   ÛÛÛÛÛÛ                 (srm_dfr@hotmail.com)
+  ÛÛÛÛÛÛß ÛÛÛ    ÛÛÛ ÛÛÛ
+ ÄÄÄÄÄÄÄÄÄÛÛÛÄÄÄÄÄÄÄ ²ÛÛ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                     ²²Û'97
+                     ±²Û       Total Annihilations .GAF File Format Hacked
+                      ±²          (GAF = Gilberts Animation Format? :-)
+                       °    
+
+ v0.0.2 (still very incomplete!)
+ ======
+
+ Saruman here. I've taken a small peek at the .GAF files TA uses to store
+ animations. This is how I figure it so far...
+
+ First, the main header (GAF_HEADER)
+
+  Name               Size           Offset
+  ============================================
+  IDversion          Longword       $00-
+  entries            Longword       $04-
+  unknown            Longword       $08-         (always 0?)
+
+ the "unknown" entry is zero in all files I've inspected. Maybe reserved
+ for future use? (seems odd not to make the header a multiple of sixteen,
+ but...)
+
+ After this small header (3*8 bytes) comes list of pointers (Longword
+ sized ofcourse, I call them GAF_ENTRY_PTRs). There's one pointer for
+ each 'entry', pointing to another structure which is stored at the end
+ of the file.
+
+ Let's look at that structure (GAF_ENTRY_STRUCTURE):
+
+  Name               Size           Offset (GAF_ENTRY_PTR+)
+  ============================================
+  frames             Word           $00-
+  unknown1           Word           $02-
+  unknown2           Longword       $04-
+  name               32 chars       $08-
+
+ after this comes yet _another_ list... phew.. this is a list in the form of
+ a structure:
+
+  Name               Size           Offset (GAF_ENTRY_PTR+$28)
+  ============================================
+  PTRframetable      Longword       $00-
+  unknown            Longword       $04-$07
+
+ This is repeated 'frames' times. The "unknown" is probably a 'size/length' of
+ some structure.
+
+ Now, what's a the PTRframetable? This, I cannot say for sure. I would think
+ that this contains a width and height word and a list of pointers to the
+ graphics data (or to a structure pointing to graphics data)... But then, I've
+ been known to be wrong a times. :-)
+
+ I sure hope someone at cavedog is getting a great laught out of this :-)
+ (you you are, feel free to laugh at me in e-mail. I would be an great honor)
+
+******************************
+Joe D here!  Here's some stuff about PTRframetable.
+
+  Name               Size           Offset
+  ============================================
+  width              word           $00
+  height             word           $02
+  Unknown            word           $04
+  Unknown            word           $06
+  Unknown            long           $08
+  Unknown            long           $0C
+  PTRframedata       long           $10
+  Unknown            long           $14
+
+  Some of those unknown word pairs may really be longs, and some of those 
+  unknown longs may be word pairs.
+
+  PTRframedata points to stuff that looks to be pixel data.
+
+  For each pixel line ("height" the PTRframetable), there is a word giving the
+  amount of data, followed by that many bytes of data.
+
+  if byte >= 0x30
+    it's a pixel. plot it.
+  else if (byte & 1) <> 0
+    skipcount = byte >> 1
+    skip over skipcount pixels
+  else if (byte & 0x3) = 2
+    repeatcount = (byte >> 2) + 1
+    repeat next byte repeatcount times
+  else
+    ????  no idea.  ignore it for now.
+  end if
+
+
+**************************** 
+
+ Contacting us
+ =============
+
+ Saruman:
+
+  email: srm_dfr@hotmail.com (my nice saruman@saru.ct.se is dead, hotmail
+                              will have to do for the time being... :-( 
+  homepage: http://hem2.passagen.se/eddy1/
+  BBS: +46-16-515209 (don't call from abroad if it costs you money, I have
+                      nothing much of interrest on my board.
+  FidoNet: eddy l o jansson @ 2:206/233 (I read the international PASCAL &
+                                         80XXX areas. You can FREQ the latest
+                                         TAtool using the magic name 'TATOOL')
+  IRC: 'eddy' or 'saruman' on IRCNET #eskilstuna & #cracking
+
+ Bobban:
+
+  email: tfy96rrg@mds.mdh.se                  (@mail.mds.mdh.se?)
+  homepage: http://www.mds.mdh.se/~tfy96rrg/  (not done)
+  Fidonet: robert risberg @ 2:206/233
+
+ Greetings
+ =========
+
+  ú Bobban for co-hacking this with me.
+  ú All DFR Members.
+  ú webmaster@annihilated.com - great site (http://www.annihilated.com)
+  ú Friends and family.
+
+ Keep on cracking!

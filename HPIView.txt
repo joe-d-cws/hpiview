@@ -1,0 +1,79 @@
+
+HPIView 1.9.1 - Windows HPI file viewer and extractor
+
+This program provides an Explorer-like interface to the HPI file,
+allowing you to poke around and extract or view individual files from it.
+
+Just run HPIView.exe, select File/Open from the menu, and start browsing.
+You can also specify an initial file to open on the command line.
+Hint: Place a shortcut to HPIView in your WINDOWS\SendTo directory.  Then
+right-click on the file, and send it to HPIView.
+
+When you see a file you want to grab, right-click on it, and select File/Extract.
+
+To extract all the files in the HPI file, select File/Extract All, and then
+point to a directory to extract to.
+
+To view the file without extracting it, just double-click on it, or select File/View
+from the menu.
+
+The program can view text, BMP, PCX, JPG, WAV, TNT, GAF, and SCT files.
+If it doesn't know how to view the file, it will show a hex dump of it.
+
+The GAF files in TAK will look a bit wonky because of the different palette.
+I'll fix that in the next release.
+
+If you have any comments or suggestions, let me know!
+
+ZLib compression and decompression by Jean-loup Gailly (compression) and 
+Mark Adler (decompression). 
+For more info, see the zlib Home Page at http://www.cdrom.com/pub/infozip/zlib/
+
+JPEG decoding routines by the Independent JPEG Group.
+ftp://ftp.uu.net/graphics/jpeg/jpegsrc.v6b.tar.gz
+
+Changes from 1.9
+Verifies TAK format checksums
+JPEGs now displayed in 24-bit color
+File date now set correctly on files extracted from TAK archives
+Eliminated random garbage character at end of viewed text files
+
+Changes from 1.8
+Added TAK support
+Added JPEG viewing support
+
+Changes from 1.7.1
+Release source code.
+
+Changes from 1.7
+Minor bug fix.  The "View", "Extract", and "Extract All" menu options were greyed
+out if you opened a file via the command line, association, or drag and drop.
+This has been fixed.
+
+Changes from 1.6
+Can now view uncompressed archives
+
+Changes from 1.5
+ZLib code now statically linked - zlib.dll is not necessary
+Can now view SCT files
+
+Changes from V1.4
+Added support for CCX files.
+Can now open an HPI file on the command line
+
+Changes from V1.3
+Fixed problem viewing PCX files whose width was not a multiple of 4.
+Can now view GAF files.
+
+Changes from V 1.25:
+Definitely fixed those pesky kernel errors that some people were getting.
+Can now view text files larger than 64K
+
+Changes from V 1.2:
+I think I fixed those pesky kernel errors that some people were getting.
+Can now view (slightly) larger text files.
+Added a message when the excess data in a text file was truncated.
+Added a "View as Text" option.
+
+Joe D
+joed@cws.org

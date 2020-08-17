@@ -1,0 +1,30 @@
+SCT file format (TA sections)
+Written by Kinboat, 1998.
+*****************************
+
+* File Header (28 bytes) *
+Version (long)
+PTRMini (long)
+NumTiles (long)
+PTRTiles (long)
+SectionWidth (in tiles) (long)
+SectionHeight (in tiles) (long)
+PTRSectionData (long)
+
+* TileData (PTRTiles) *
+TileData(NumTiles*1024) (byte)
+
+* SectionData (PTRSectionData) *
+SectionData(SectionWidth*SectionHeight) (int)
+HeightData(SectionWidth*SectionHeight*4) (byte)
+  stored in file right after the SectionData.
+  stored in groups of 8 bytes as:
+ X (height data byte)
+  -255 (integer, always -255)
+  0 (byte)
+  0 (long)
+
+* Minimap (PTRMini) *
+Minimap(128*128) (byte)
+  The minigraphic is stored at some odd rotation.
+  Check it out when saving...

@@ -1,0 +1,67 @@
+IT's easy 
+
+for example use ARMFLAKER_GADGET.GAF
+
+at adress $10 it's the start of first picture
+
+you see in HEX  
+
+04 00 00 5B FA FF 41 00 E0 5B 94 ....
+
+04 is number of byte to read for decode 1 horizontal line of 40 bytes
+00 is a separator
+
+the first line to decode is 00 5B FA FF
+
+00 is a MASK 
+ if mask AND $02 = 02 thats a counter 
+
+else it's adress for the next counter
+
+ the adress is given by MASK with ADRESS = (MASK DIV 4) + 1 
+ in this example ADRESS = 1  it's relatif adress;
+
+then 5B is single value
+
+at ADRESS = 1 there's FA
+
+FA AND 02 = 02 then COUNTER = (FA + 2) DIV 4 = 3F
+
+THEN YOU COPY FF  for 3F time
+
+and you have a complete line 
+
+Note: after a value to COPY you have a byte MASK (MASK or COUNTER) if the
+line is not completed
+
+
+        ElseIf Frame.CompressFlag = 1 Then
+            For Y = 0 To Frame.Height - 1
+                Get FileHandle, , Bytes
+                xPos = 1 'Frame.PositionX
+                X = 1
+                Do While X <= Bytes
+                    Get FileHandle, , CH
+                    X = X + 1
+                    If (CH And 1) = 1 Then ' transparent '
+                        xPos = xPos + Int(CH / 2) + 1
+                    ElseIf (CH And 2) = 2 Then ' repeat pixel '
+                        Get FileHandle, , Buffer
+                        X = X + 1
+                        For xAt = 0 To Int(CH / 4)
+                           Canvas.PSet (xPos + xAt, Y + yPos), RGB(TNTPalette(Buffer).rgbRed, TNTPalette(Buffer).rgbGreen, TNTPalette(Buffer).rgbBlue)
+                        Next
+                        xPos = xPos + Int(CH / 4) + 1
+                    Else ' draw pixels '
+                        For xAt = 0 To Int(CH / 4)
+                           Get FileHandle, , Buffer
+                           X = X + 1
+                           Canvas.PSet (xPos + xAt, Y + yPos), RGB(TNTPalette(Buffer).rgbRed, TNTPalette(Buffer).rgbGreen, TNTPalette(Buffer).rgbBlue)
+                        Next
+                        xPos = xPos + Int(CH / 4) + 1
+                    End If
+                    DoEvents
+                Loop
+            Next
+        End If
+ 
